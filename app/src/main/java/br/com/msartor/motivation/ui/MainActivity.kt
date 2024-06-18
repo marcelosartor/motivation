@@ -13,6 +13,7 @@ import br.com.msartor.motivation.infra.SecurityPreferences
 import br.com.msartor.motivation.databinding.ActivityMainBinding
 import br.com.msartor.motivation.repository.Mock
 import br.com.msartor.motivation.repository.Phrase
+import java.util.Locale
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun handleUserName() {
         val name = SecurityPreferences(applicationContext).getString(MotivationConstants.KEY.USER_NAME)
-        binding.textUserName.text = "Olá, $name!"
+        binding.textUserName.text = "${applicationContext.getString(R.string.hello)}, $name!"
     }
 
     override fun onClick(view: View) {
@@ -56,7 +57,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun handleNextPhrase() {
-        var phrase = Mock().getPhrase(categoryId)
+        val locale = Locale.getDefault()
+        var phrase = Mock().getPhrase(categoryId, locale.language)
         binding.textPhrase.text = phrase
     }
 
