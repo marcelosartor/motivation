@@ -29,15 +29,9 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.buttonSave.setOnClickListener(this)
 
-        verifyUserName()
+
     }
 
-    private fun verifyUserName() {
-        val name = SecurityPreferences(applicationContext).getString(MotivationConstants.KEY.USER_NAME)
-        if(name.isNotBlank()){
-            lauchMainActivity()
-        }
-    }
 
     override fun onClick(view: View) {
         if (view.id == R.id.button_save) {
@@ -56,7 +50,6 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun lauchMainActivity() {
-        startActivity(Intent(applicationContext, MainActivity::class.java))
         finish()
     }
 }
